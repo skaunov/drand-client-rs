@@ -26,7 +26,7 @@ pub struct DrandClient<'a, T: Transport> {
 /// create a new instance of the client with an HTTP transport for a given `base_url`.
 /// Supported `base_url`s include: "<https://api.drand.sh>", "<https://drand.cloudflare.com>" and "<https://api.drand.secureweb3.com:6875>".
 /// A full list can be found at <https://drand.love/developer/>
-pub fn new_http_client(base_url: &str) -> Result<DrandClient<HttpTransport>, DrandClientError> {
+pub fn new_http_client(base_url: &str) -> Result<DrandClient<'_, HttpTransport>, DrandClientError> {
     let http_transport = new_http_transport();
     let chain_info = fetch_chain_info(&http_transport, base_url)?;
     Ok(DrandClient {
